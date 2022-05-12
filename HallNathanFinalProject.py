@@ -32,7 +32,10 @@ class UnitConverter(EasyFrame):
         self.C2 = inputPanel.addCombobox("Units", ["Choose Unit"], column = 1, row = 2, command = self.typeGet, sticky = tkinter.N+tkinter.E+tkinter.W)
 
         # Convert button because float fields can't run commands smh
-        self.conButton = inputPanel.addButton(text = "Convert", column = 0, row = 3, columnspan = 2, command = self.convert)
+        self.conButton = inputPanel.addButton(text = "Convert", column = 0, row = 4, columnspan = 2, command = self.convert)
+
+        # Switch button for convienance
+        self.switchButton = inputPanel.addButton(text = "Switch", column = 0, row = 3, columnspan = 2, command = self.switch)
 
     # Function that grabs text in Unit Type drop-down and fills the Unit drop-downs accordingly    
     def typeGet(self):
@@ -117,6 +120,17 @@ class UnitConverter(EasyFrame):
 
         # Put final number into text field
         self.outNum.setText(convertNum)
+
+    # Switch unit1 for unit2 for convience sake
+    def switch(self):
+
+        # Grab Units from fields
+        unit1 = self.C1.getText()
+        unit2 = self.C2.getText()
+
+        # Set each Unit to the opposite one
+        self.C1.setText(unit2)
+        self.C2.setText(unit1)
 
 def main():
     UnitConverter().mainloop()
