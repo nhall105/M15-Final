@@ -11,15 +11,19 @@ class UnitConverter(EasyFrame):
         # Create the main frame
         EasyFrame.__init__(self, title = "Unit Converter")
 
+        # Define fonts for asthetics
+        label = Font(size = 18, weight = "bold")
+
         # Create type of units drop-down
-        self.CT = self.addCombobox("Type of Conversion", ["Area", "Data Transfer Rate", "Digital Storage", "Energy", "Frequency", "Fuel Economy", "Length", "Mass", "Plane Angle", "Pressure", "Speed", "Temperature", "Time", "Volume"], column = 0, row = 0, columnspan = 2, sticky = tkinter.N+tkinter.W+tkinter.E)
+        typePanel = self.addPanel(row = 0, column = 0, background = "#eec9d2")
+        self.CT = typePanel.addCombobox("Type of Conversion", ["Area", "Data Transfer Rate", "Digital Storage", "Energy", "Frequency", "Fuel Economy", "Length", "Mass", "Plane Angle", "Pressure", "Speed", "Temperature", "Time", "Volume"], column = 0, row = 0, columnspan = 2, sticky = tkinter.N+tkinter.W+tkinter.E)
 
         # Input panel creation
-        inputPanel = self.addPanel(row = 1, column = 0, background = "purple")
+        inputPanel = self.addPanel(row = 1, column = 0, background = "#f4b6c2")
                 
         # Conversion input field/output text (Also labels)
-        inputPanel.addLabel("Input", row = 0, column = 0, sticky = tkinter.S+tkinter.E+tkinter.W)
-        inputPanel.addLabel("Output", row = 0, column = 1, sticky = tkinter.S+tkinter.E+tkinter.W)
+        inputPanel.addLabel("Input", row = 0, column = 0, sticky = tkinter.S+tkinter.E+tkinter.W, background = "#f4b6c2", foreground = "#eee3e7", font = label)
+        inputPanel.addLabel("Output", row = 0, column = 1, sticky = tkinter.S+tkinter.E+tkinter.W, background = "#f4b6c2", foreground = "#eee3e7", font = label)
         self.inNum = inputPanel.addFloatField(" ", row = 1, column = 0, sticky = tkinter.E+tkinter.W)
         self.outNum = inputPanel.addTextField(" ", row = 1, column = 1, state = 'readonly', sticky = tkinter.E+tkinter.W)
 
@@ -27,7 +31,7 @@ class UnitConverter(EasyFrame):
         self.C1 = inputPanel.addCombobox("Units", ["Choose Unit"], column = 0, row = 2, command = self.typeGet, sticky = tkinter.N+tkinter.E+tkinter.W)
         self.C2 = inputPanel.addCombobox("Units", ["Choose Unit"], column = 1, row = 2, command = self.typeGet, sticky = tkinter.N+tkinter.E+tkinter.W)
 
-        # Convert button because float fields can run commands smh
+        # Convert button because float fields can't run commands smh
         self.conButton = inputPanel.addButton(text = "Convert", column = 0, row = 3, columnspan = 2, command = self.convert)
 
     # Function that grabs text in Unit Type drop-down and fills the Unit drop-downs accordingly    
