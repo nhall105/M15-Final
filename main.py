@@ -2,13 +2,14 @@ from breezypythongui import EasyFrame
 from tkinter.font import Font
 import tkinter
 import units
+import temp
 
 class UnitConverter(EasyFrame):
 
     def __init__(self):
 
         # Create the main frame
-        EasyFrame.__init__(self, width = 816, height = 624, title = "Unit Converter")
+        EasyFrame.__init__(self, title = "Unit Converter")
 
         # Create type of units drop-down
         self.CT = self.addCombobox("Type of Conversion", ["Area", "Data Transfer Rate", "Digital Storage", "Energy", "Frequency", "Fuel Economy", "Length", "Mass", "Plane Angle", "Pressure", "Speed", "Temperature", "Time", "Volume"], column = 0, row = 0, columnspan = 2, sticky = tkinter.N+tkinter.W+tkinter.E)
@@ -17,14 +18,14 @@ class UnitConverter(EasyFrame):
         inputPanel = self.addPanel(row = 1, column = 0, background = "purple")
                 
         # Conversion input field/output text (Also labels)
-        inputPanel.addLabel("Input", row = 0, column = 0, sticky = tkinter.E)
-        inputPanel.addLabel("Output", row = 0, column = 1, sticky = tkinter.E)
-        self.inNum = inputPanel.addFloatField(" ", row = 1, column = 0)
-        self.outNum = inputPanel.addTextField(" ", row = 1, column = 1, state = 'readonly')
+        inputPanel.addLabel("Input", row = 0, column = 0, sticky = tkinter.S+tkinter.E+tkinter.W)
+        inputPanel.addLabel("Output", row = 0, column = 1, sticky = tkinter.S+tkinter.E+tkinter.W)
+        self.inNum = inputPanel.addFloatField(" ", row = 1, column = 0, sticky = tkinter.E+tkinter.W)
+        self.outNum = inputPanel.addTextField(" ", row = 1, column = 1, state = 'readonly', sticky = tkinter.E+tkinter.W)
 
         # Conversion drop-down lists
-        self.C1 = inputPanel.addCombobox("Units", ["Choose Unit"], column = 0, row = 2, command = self.typeGet)
-        self.C2 = inputPanel.addCombobox("Units", ["Choose Unit"], column = 1, row = 2, command = self.typeGet)
+        self.C1 = inputPanel.addCombobox("Units", ["Choose Unit"], column = 0, row = 2, command = self.typeGet, sticky = tkinter.N+tkinter.E+tkinter.W)
+        self.C2 = inputPanel.addCombobox("Units", ["Choose Unit"], column = 1, row = 2, command = self.typeGet, sticky = tkinter.N+tkinter.E+tkinter.W)
 
         # Convert button because float fields can run commands smh
         self.conButton = inputPanel.addButton(text = "Convert", column = 0, row = 3, columnspan = 2, command = self.convert)
@@ -58,26 +59,26 @@ class UnitConverter(EasyFrame):
             self.C1["values"] = ["Kilometer", "Meter", "Centimeter", "Millimeter", "Micrometer", "Nanometer", "Mile", "Yard", "Foot", "Inch", "Nautical mile"]
             self.C2["values"] = ["Kilometer", "Meter", "Centimeter", "Millimeter", "Micrometer", "Nanometer", "Mile", "Yard", "Foot", "Inch", "Nautical mile"]
         elif text == "Mass":
-            self.C1["values"] = ["DS 1"]
-            self.C2["values"] = ["DS 2"]
+            self.C1["values"] = ["Metric ton", "Kilogram", "Gram", "Milligram", "Microgram", "Imperial ton", "US ton", "Stone", "Pound", "Ounce"]
+            self.C2["values"] = ["Metric ton", "Kilogram", "Gram", "Milligram", "Microgram", "Imperial ton", "US ton", "Stone", "Pound", "Ounce"]
         elif text == "Plane Angle":
-            self.C1["values"] = ["DS 1"]
-            self.C2["values"] = ["DS 2"]
+            self.C1["values"] = ["Degree", "Gradian", "Milliradian", "Minute of arc", "Radian", "Second of arc"]
+            self.C2["values"] = ["Degree", "Gradian", "Milliradian", "Minute of arc", "Radian", "Second of arc"]
         elif text == "Pressure":
-            self.C1["values"] = ["DS 1"]
-            self.C2["values"] = ["DS 2"]
+            self.C1["values"] = ["Bar", "Pascal", "Pound-force per square inch", "Standard atmosphere", "Torr"]
+            self.C2["values"] = ["Bar", "Pascal", "Pound-force per square inch", "Standard atmosphere", "Torr"]
         elif text == "Speed":
-            self.C1["values"] = ["DS 1"]
-            self.C2["values"] = ["DS 2"]
+            self.C1["values"] = ["Miles per hour", "Foot per second", "Meter per second", "Kilometer per hour", "Knot"]
+            self.C2["values"] = ["Miles per hour", "Foot per second", "Meter per second", "Kilometer per hour", "Knot"]
         elif text == "Temperature":
-            self.C1["values"] = ["DS 1"]
-            self.C2["values"] = ["DS 2"]
+            self.C1["values"] = ["Celsius", "Fahrenheit", "Kelvin"]
+            self.C2["values"] = ["Celsius", "Fahrenheit", "Kelvin"]
         elif text == "Time":
-            self.C1["values"] = ["DS 1"]
-            self.C2["values"] = ["DS 2"]
+            self.C1["values"] = ["Nanosecond", "Microsecond", "Millisecond", "Second", "Minute", "Hour", "Day", "Week", "Month", "Calendar year", "Decade", "Century"]
+            self.C2["values"] = ["Nanosecond", "Microsecond", "Millisecond", "Second", "Minute", "Hour", "Day", "Week", "Month", "Calendar year", "Decade", "Century"]
         elif text == "Volume":
-            self.C1["values"] = ["DS 1"]
-            self.C2["values"] = ["DS 2"]
+            self.C1["values"] = ["US liquid gallon", "US liquid quart", "US liquid pint", "US legal cup", "US fluid ounce", "US tablespoon", "US teaspoon", "Cubic meter", "Liter", "Milliliter", "Imperial gallon", "Imperial quart", "Imperial pint", "Imperial cup", "Imperial fluid ounce", "Imperial tablespoon", "Imperial Teaspoon", "Cubic foot", "Cubic inch"]
+            self.C2["values"] = ["US liquid gallon", "US liquid quart", "US liquid pint", "US legal cup", "US fluid ounce", "US tablespoon", "US teaspoon", "Cubic meter", "Liter", "Milliliter", "Imperial gallon", "Imperial quart", "Imperial pint", "Imperial cup", "Imperial fluid ounce", "Imperial tablespoon", "Imperial Teaspoon", "Cubic foot", "Cubic inch"]
 
     # Grabs the Unit drop-downs and number entered and convert, then outputs
     def convert(self):
@@ -88,15 +89,19 @@ class UnitConverter(EasyFrame):
         num = float(self.inNum.getNumber())
         
         # Run drop-down text through function to get coresponding number
-        unit1Num = units.unitValue(unit1)
-        unit2Num = units.unitValue(unit2)
+        if self.CT.getText() != "Temperature":
+            unit1Num = units.unitValue(unit1)
+            unit2Num = units.unitValue(unit2)
         
         #print(str(unit1Num)) #Testing purposes
         #print(str(unit2Num)) #Testing purposes
         #print(str(num)) #Testing purposes
 
         # Run numbers through conversion equation (uses a base unit for each meausurement so it takes current units, converts to base unit, then into final unit)
-        convertNum = (num / unit1Num) * unit2Num
+        if self.CT.getText() == "Temperature":
+            convertNum = temp.tempConv(unit1, unit2, num)
+        else:
+            convertNum = (num / unit1Num) * unit2Num
         
         # Tells how many decimal places based on number (turns into int if none)
         if float(convertNum).is_integer() == True:

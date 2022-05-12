@@ -1,4 +1,5 @@
 # Conversion function to keep my main file clean-ish
+import math
 
 def unitValue(unit):
 
@@ -161,6 +162,129 @@ def unitValue(unit):
         num = 0.0001645788
 
     # Mass units
-    
+    elif unit == "Metric ton":
+        num = 0.0004535924
+    elif unit == "Kilogram":
+        num = 0.45359237
+    elif unit == "Gram":
+        num = 453.59237
+    elif unit == "Milligram":
+        num = 453592.37
+    elif unit == "Microgram":
+        num = 4.536e+8
+    elif unit == "Imperial ton":
+        num = 1 / 2240
+    elif unit == "US ton":
+        num = 1 / 2000
+    elif unit == "Stone":
+        num = 1 / 14
+    elif unit == "Pound":
+        num = 1
+    elif unit == "Ounce":
+        num = 16
+
+    # PA units
+    elif unit == "Degree":
+        num = 1
+    elif unit == "Gradian":
+        num = 200 / 180
+    elif unit == "Milliradian":
+        num = (1000 * math.pi) / 180
+    elif unit == "Minute of arc":
+        num = 60
+    elif unit == "Radian":
+        num = math.pi / 180
+    elif unit == "Second of arc":
+        num = 3600
+
+    # Pressure units
+    elif unit == "Bar":
+        num = 1 / 100000
+    elif unit == "Pascal":
+        num = 1
+    elif unit == "Pound-force per square inch":
+        num = 0.0001450377
+    elif unit == "Standard atmosphere":
+        num = 1 / 101325
+    elif unit == "Torr":
+        num = 0.0075006168
+
+    # Speed units
+    elif unit == "Miles per hour":
+        num = 1
+    elif unit == "Foot per second":
+        num = 5280 / 3600
+    elif unit == "Meter per second":
+        num = 1 / 2.237
+    elif unit == "Kilometer per hour":
+        num = 1.609344
+    elif unit == "Knot":
+        num = 5280 / 6076
+
+    # Time units
+    elif unit == "Nanosecond":
+        num = 1e+9
+    elif unit == "Microsecond":
+        num = 1e+6
+    elif unit == "Millisecond":
+        num = 1000
+    elif unit == "Second":
+        num = 1
+    elif unit == "Minute":
+        num = 1 / 60
+    elif unit == "Hour":
+        num = 1 / 3600
+    elif unit == "Day":
+        num = 1 / 86400
+    elif unit == "Week":
+        num = 1 / 604800
+    elif unit == "Month":
+        num = 1 / 2.628e+6
+    elif unit == "Calendar year":
+        num = 1 / 31536000
+    elif unit == "Decade":
+        num = 1 / 315360000
+    elif unit == "Century":
+        num = 1 / 3153600000
+
+    # Volume units
+    elif unit == "US liquid gallon":
+        num = 1
+    elif unit == "US liquid quart":
+        num = 4
+    elif unit == "US liquid pint":
+        num = 8
+    elif unit == "US legal cup":
+        num = (1 / 1.201) * 18.942
+    elif unit == "US fluid ounce":
+        num = 128
+    elif unit == "US tablespoon":
+        num = 256
+    elif unit == "US teaspoon":
+        num = 768
+    elif unit == "Cubic meter":
+        num = (128 / 33.814) * 1000
+    elif unit == "Liter":
+        num = 128 / 33.814
+    elif unit == "Milliliter":
+        num = (128 / 33.814) * 1000
+    elif unit == "Imperial gallon":
+        num = 1 / 1.201
+    elif unit == "Imperial quart":
+        num = (1 / 1.201) * 4
+    elif unit == "Imperial pint":
+        num = (1 / 1.201) * 8
+    elif unit == "Imperial cup":
+        num = (1 / 1.201) * 16
+    elif unit == "Imperial fluid ounce":
+        num = (1 / 1.201) * 160
+    elif unit == "Imperial tablespoon":
+        num = (1 / 1.201) * 256
+    elif unit == "Imperial Teaspoon":
+        num = (1 / 1.201) * 256 * 3
+    elif unit == "Cubic foot":
+        num = 231 / 1728
+    elif unit == "Cubic inch":
+        num = 231
 
     return num
